@@ -91,14 +91,18 @@ nav {
   padding: 6rem 4rem;
   text-align: center;
 }
-.hero-tag {
+.hero-inner {
+  /* trims the empty space above the first line and below the last line */
+  text-box: trim-both cap alphabetic;
+}
+.hero .hero-tag {
   font-size: 1rem;
   font-weight: 500;
   color: rgba(255,255,255,0.7);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  margin-bottom: 1.1rem;
   line-height: 1;
+  margin-bottom: 1.1rem;
 }
 .hero h1 {
   font-family: var(--serif);
@@ -108,7 +112,7 @@ nav {
   color: var(--white);
   margin-bottom: 1rem;
 }
-.hero p {
+.hero h1 + p {
   font-size: 1.35rem;
   color: rgba(255,255,255,0.72);
   font-weight: 300;
