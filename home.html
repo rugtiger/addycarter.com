@@ -1,3 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>New homepage!</head>
+<head>
+<link rel="icon" type="image/png" href="favicon.png">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Playlist — Addy Carter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --steel: #4682B4;
+  --steel-dark: #2C5F8A;
+  --steel-pale: #e8f1f9;
+  --ink: #111827;
+  --mid: #6B7280;
+  --light: #F3F6FA;
+  --white: #FFFFFF;
+  --card: #5EB3FB;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--sans);
+  background: var(--light);
+  color: var(--ink);
+  line-height: 1.65;
+  font-size: 17px;
+}
+/* NAV */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid #D0DCE8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+  height: 62px;
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
+.nav-links {
+  display: flex;
+  gap: 2.2rem;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.92rem;
+  font-weight: 400;
+  color: var(--mid);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--steel); }
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 30px;
+  height: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.nav-toggle span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: transform 0.2s, opacity 0.2s;
+}
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* HERO */
+.hero {
+  background: var(--steel);
+  padding: 4rem 3rem;
+}
+.hero-inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+.hero-tag {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.9rem;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 0.7rem;
+}
+.hero p {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.72);
+  font-weight: 300;
+}
+
+/* DIVIDER */
+.divider {
+  max-width: 820px;
+  margin: 0 auto;
+  border: none;
+  border-top: 1px solid #E5EAF0;
+}
+
+/* TRACKS */
+.section {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 2.5rem 3rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.track {
+  background: var(--card);
+  border-radius: 28px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.track-cover {
+  width: 110px;
+  height: 110px;
+  flex-shrink: 0;
+  border-radius: 22px;
+  background: #8557F9; /* purple placeholder until an image loads */
+  object-fit: cover;
+  display: block;
+}
+.track-info { min-width: 0; }
+.track-title {
+  display: block;
+  font-family: var(--sans);
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--ink);
+}
+a.track-title { text-decoration: none; }
+a.track-title:hover { text-decoration: underline; }
+.track-artist {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid #E5EAF0;
+  text-align: center;
+  padding: 2rem 3rem;
+  font-size: 0.84rem;
+  color: var(--mid);
+}
+footer a { color: var(--steel); text-decoration: none; }
+
+@media (max-width: 680px) {
+  nav { padding: 0 1.2rem; }
+  .nav-toggle { display: flex; }
+  .nav-links {
+    position: absolute;
+    top: 62px;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-bottom: 1px solid #D0DCE8;
+    flex-direction: column;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+  }
+  .nav-links.open { max-height: 300px; }
+  .nav-links li { border-top: 1px solid #E5EAF0; }
+  .nav-links a { display: block; padding: 1rem 1.4rem; }
+  .hero { padding: 3rem 1.4rem; }
+  .section { padding: 2rem 1.4rem 3rem; }
+  .divider { margin: 0 1.4rem; }
+  .track { padding: 1rem; gap: 1rem; border-radius: 22px; }
+  .track-cover { width: 80px; height: 80px; border-radius: 16px; }
+  .track-title { font-size: 1.2rem; }
+  .track-artist { font-size: 0.95rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+<a class="nav-logo" href="/">Addy Carter</a>
+<button class="nav-toggle" id="navToggle" aria-label="Toggle menu" onclick="toggleNav()">
+<span></span><span></span><span></span>
+</button>
+<ul class="nav-links" id="navLinks">
+<li><a href="https://www.linkedin.com/in/addycarter/" target="_blank" rel="noopener">LinkedIn</a></li>
+</ul>
+</nav>
+
+<div class="hero">
+<div class="hero-inner">
+<p class="hero-tag">Music Recommendations</p>
+<h1>Playlist</h1>
+<p>Songs that I think everyone should listen to at least once in their lifetime.</p>
+</div>
+</div>
+
+<hr class="divider" />
+
+<div class="section" id="trackList">
+<!-- To add a track: copy one .track block below, then update the image path, title, and artist. -->
+
+<div class="track">
+  <img class="track-cover" src="covers/for-reasons-unknown.jpg" alt="" />
+  <div class="track-info">
+    <span class="track-title">For Reasons Unknown</span>
+    <span class="track-artist">The Killers</span>
+  </div>
+</div>
+
+</div>
+
+<footer>
+<a href="mailto:agc5787@psu.edu">agc5787@psu.edu</a> &nbsp;·&nbsp;
+<a href="https://www.linkedin.com/in/addycarter/" target="_blank" rel="noopener">linkedin.com/addycarter</a>
+</footer>
+
+<script>
+function toggleNav() {
+  document.getElementById('navToggle').classList.toggle('open');
+  document.getElementById('navLinks').classList.toggle('open');
+}
+document.querySelectorAll('.nav-links a').forEach(function(link) {
+  link.addEventListener('click', function() {
+    document.getElementById('navToggle').classList.remove('open');
+    document.getElementById('navLinks').classList.remove('open');
+  });
+});
+</script>
+</body>
+</html>
