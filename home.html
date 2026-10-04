@@ -92,6 +92,7 @@ nav {
 }
 .hero-inner {
   margin: 0 auto;
+  text-align: center;
 }
 .hero-tag {
   font-size: 0.82rem;
@@ -148,6 +149,14 @@ nav {
   object-fit: cover;
   display: block;
 }
+a.track-cover-link {
+  flex-shrink: 0;
+  display: block;
+  line-height: 0;
+  border-radius: 12px;
+  transition: opacity 0.2s;
+}
+a.track-cover-link:hover { opacity: 0.8; }
 .track-info { min-width: 0; }
 .track-title {
   display: block;
@@ -156,8 +165,6 @@ nav {
   line-height: 1.2;
   color: var(--ink);
 }
-a.track-title { text-decoration: none; }
-a.track-title:hover { color: var(--steel); text-decoration: underline; }
 .track-artist {
   display: block;
   margin-top: 0.3rem;
@@ -225,6 +232,7 @@ footer a { color: var(--steel); text-decoration: none; }
 
 <div class="section" id="trackList">
 <!-- Order: #38 at the top, #1 at the bottom. To add a track: copy one .track block, then update the image path, title, and artist. -->
+<!-- To link a cover to YouTube: wrap the <img> in <a class="track-cover-link" href="..." target="_blank" rel="noopener"> ... </a> -->
 
 <div class="track">
   <img class="track-cover" src="covers/sprawl-ii.jpg" alt="" />
@@ -259,9 +267,11 @@ footer a { color: var(--steel); text-decoration: none; }
 </div>
 
 <div class="track">
-  <img class="track-cover" src="covers/all-i-wanted.jpg" alt="" />
+  <a class="track-cover-link" href="https://youtu.be/J-i_YUptO7I?si=lfg4dh_yVZrVpXWr" target="_blank" rel="noopener">
+    <img class="track-cover" src="covers/all-i-wanted.jpg" alt="Play All I Wanted on YouTube" />
+  </a>
   <div class="track-info">
-    <a class="track-title" href="https://youtu.be/J-i_YUptO7I?si=lfg4dh_yVZrVpXWr">All I Wanted</a>
+    <span class="track-title">All I Wanted</span>
     <span class="track-artist">Paramore</span>
   </div>
 </div>
@@ -299,9 +309,11 @@ footer a { color: var(--steel); text-decoration: none; }
 </div>
 
 <div class="track">
-  <img class="track-cover" src="covers/dakota.jpg" alt="" />
+  <a class="track-cover-link" href="https://youtu.be/wnf7LX63fpM?si=-iTiZrrHE9mYZbLE" target="_blank" rel="noopener">
+    <img class="track-cover" src="covers/dakota.jpg" alt="Play Dakota on YouTube" />
+  </a>
   <div class="track-info">
-    <a class="track-title" href="https://youtu.be/wnf7LX63fpM?si=-iTiZrrHE9mYZbLE">Dakota</a>
+    <span class="track-title">Dakota</span>
     <span class="track-artist">Stereophonics</span>
   </div>
 </div>
@@ -411,9 +423,11 @@ footer a { color: var(--steel); text-decoration: none; }
 </div>
 
 <div class="track">
-  <img class="track-cover" src="covers/young-folks.jpg" alt="" />
+  <a class="track-cover-link" href="https://youtu.be/Q2xGTbFJGNQ?si=tM03dDE3rZTz6_t0" target="_blank" rel="noopener">
+    <img class="track-cover" src="covers/young-folks.jpg" alt="Play Young Folks on YouTube" />
+  </a>
   <div class="track-info">
-    <a class="track-title" href="https://youtu.be/Q2xGTbFJGNQ?si=tM03dDE3rZTz6_t0">Young Folks</a>
+    <span class="track-title">Young Folks</span>
     <span class="track-artist">Peter Bjorn and John</span>
   </div>
 </div>
@@ -459,9 +473,11 @@ footer a { color: var(--steel); text-decoration: none; }
 </div>
 
 <div class="track">
-  <img class="track-cover" src="covers/everlong.jpg" alt="" />
+  <a class="track-cover-link" href="https://youtu.be/fcP0-TPlcS0?si=MkCMxbzQ-TaVYIA6" target="_blank" rel="noopener">
+    <img class="track-cover" src="covers/everlong.jpg" alt="Play Everlong on YouTube" />
+  </a>
   <div class="track-info">
-    <a class="track-title" href="https://youtu.be/fcP0-TPlcS0?si=MkCMxbzQ-TaVYIA6">Everlong</a>
+    <span class="track-title">Everlong</span>
     <span class="track-artist">Foo Fighters</span>
   </div>
 </div>
@@ -475,9 +491,11 @@ footer a { color: var(--steel); text-decoration: none; }
 </div>
 
 <div class="track">
-  <img class="track-cover" src="covers/lover-you-shouldve-come-over.jpg" alt="" />
+  <a class="track-cover-link" href="https://youtu.be/F_eLuk4RjIQ?si=uu3l9lRndQFIuf-n" target="_blank" rel="noopener">
+    <img class="track-cover" src="covers/lover-you-shouldve-come-over.jpg" alt="Play Lover, You Should've Come Over on YouTube" />
+  </a>
   <div class="track-info">
-    <a class="track-title" href="https://youtu.be/F_eLuk4RjIQ?si=uu3l9lRndQFIuf-n">Lover, You Should've Come Over</a>
+    <span class="track-title">Lover, You Should've Come Over</span>
     <span class="track-artist">Jeff Buckley</span>
   </div>
 </div>
@@ -491,9 +509,11 @@ footer a { color: var(--steel); text-decoration: none; }
 </div>
 
 <div class="track">
-  <img class="track-cover" src="covers/mind-over-matter.jpg" alt="" />
+  <a class="track-cover-link" href="https://youtu.be/FRHk9P46o9Q?si=R_i8ONBq2b-TyPLN" target="_blank" rel="noopener">
+    <img class="track-cover" src="covers/mind-over-matter.jpg" alt="Play Mind Over Matter on YouTube" />
+  </a>
   <div class="track-info">
-    <a class="track-title" href="https://youtu.be/FRHk9P46o9Q?si=R_i8ONBq2b-TyPLN">Mind Over Matter</a>
+    <span class="track-title">Mind Over Matter</span>
     <span class="track-artist">Young the Giant</span>
   </div>
 </div>
