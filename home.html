@@ -97,4 +97,191 @@ nav {
 .hero-tag {
   font-size: 0.82rem;
   font-weight: 500;
-  color:
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.9rem;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 0.7rem;
+}
+.hero p {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.72);
+  font-weight: 300;
+}
+
+/* DIVIDER */
+.divider {
+  max-width: 1200px;
+  margin: 0 auto;
+  border: none;
+  border-top: 1px solid #E5EAF0;
+}
+
+/* TRACKS */
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 3rem 4rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.track {
+  background: var(--white);
+  border: 1px solid #D0DCE8;
+  border-radius: 16px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+.track-cover {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: var(--steel-pale); /* placeholder until an image loads */
+  object-fit: cover;
+  display: block;
+}
+.track-info { min-width: 0; }
+.track-title {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  line-height: 1.2;
+  color: var(--ink);
+}
+a.track-title { text-decoration: none; }
+a.track-title:hover { color: var(--steel); text-decoration: underline; }
+.track-artist {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.88rem;
+  color: var(--steel);
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid #E5EAF0;
+  text-align: center;
+  padding: 2rem 3rem;
+  font-size: 0.84rem;
+  color: var(--mid);
+}
+footer a { color: var(--steel); text-decoration: none; }
+
+@media (max-width: 1000px) {
+  .section { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 680px) {
+  nav { padding: 0 1.2rem; }
+  .nav-toggle { display: flex; }
+  .nav-links {
+    position: absolute;
+    top: 62px;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-bottom: 1px solid #D0DCE8;
+    flex-direction: column;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+  }
+  .nav-links.open { max-height: 300px; }
+  .nav-links li { border-top: 1px solid #E5EAF0; }
+  .nav-links a { display: block; padding: 1rem 1.4rem; }
+  .hero { padding: 3rem 1.4rem; }
+  .section { padding: 2rem 1.4rem 3rem; grid-template-columns: 1fr; }
+  .divider { margin: 0 1.4rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+<a class="nav-logo" href="/">Addy Carter</a>
+<button class="nav-toggle" id="navToggle" aria-label="Toggle menu" onclick="toggleNav()">
+<span></span><span></span><span></span>
+</button>
+<ul class="nav-links" id="navLinks">
+<li><a href="https://www.linkedin.com/in/addycarter/" target="_blank" rel="noopener">LinkedIn</a></li>
+</ul>
+</nav>
+
+<div class="hero">
+<div class="hero-inner">
+<p class="hero-tag">Music Recommendations</p>
+<h1>Playlist</h1>
+<p>Songs that I think everyone should listen to at least once in their lifetime.</p>
+</div>
+</div>
+
+<hr class="divider" />
+
+<div class="section" id="trackList">
+<!-- To add a track: copy one .track block below, then update the image path, title, and artist. -->
+
+<div class="track">
+  <img class="track-cover" src="covers/for-reasons-unknown.jpg" alt="" />
+  <div class="track-info">
+    <span class="track-title">For Reasons Unknown</span>
+    <span class="track-artist">The Killers</span>
+  </div>
+</div>
+
+<div class="track">
+  <img class="track-cover" src="covers/disorder.jpg" alt="" />
+  <div class="track-info">
+    <span class="track-title">Disorder</span>
+    <span class="track-artist">Joy Division</span>
+  </div>
+</div>
+
+<div class="track">
+  <img class="track-cover" src="covers/be-quiet-and-drive.jpg" alt="" />
+  <div class="track-info">
+    <span class="track-title">Be Quiet and Drive (Far Away)</span>
+    <span class="track-artist">Deftones</span>
+  </div>
+</div>
+
+<div class="track">
+  <img class="track-cover" src="covers/youre-not-the-only-one.jpg" alt="" />
+  <div class="track-info">
+    <span class="track-title">You're Not the Only One</span>
+    <span class="track-artist">The Sundays</span>
+  </div>
+</div>
+
+</div>
+
+<footer>
+<a href="mailto:agc5787@psu.edu">agc5787@psu.edu</a> &nbsp;·&nbsp;
+<a href="https://www.linkedin.com/in/addycarter/" target="_blank" rel="noopener">linkedin.com/addycarter</a>
+</footer>
+
+<script>
+function toggleNav() {
+  document.getElementById('navToggle').classList.toggle('open');
+  document.getElementById('navLinks').classList.toggle('open');
+}
+document.querySelectorAll('.nav-links a').forEach(function(link) {
+  link.addEventListener('click', function() {
+    document.getElementById('navToggle').classList.remove('open');
+    document.getElementById('navLinks').classList.remove('open');
+  });
+});
+</script>
+</body>
+</html>
