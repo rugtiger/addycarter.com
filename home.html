@@ -37,7 +37,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2rem;
+  padding: 0 4rem;
   height: 62px;
 }
 .nav-logo {
@@ -88,7 +88,7 @@ nav {
 /* HERO */
 .hero {
   background: var(--steel);
-  padding: 4rem 2rem;
+  padding: 4rem 4rem;
 }
 .hero-inner {
   margin: 0 auto;
@@ -117,33 +117,33 @@ nav {
 
 /* DIVIDER */
 .divider {
-  margin: 0 2rem;
+  margin: 0 4rem;
   border: none;
   border-top: 1px solid #E5EAF0;
 }
 
 /* TRACKS */
 .section {
-  padding: 2.5rem 2rem 4rem;
+  padding: 2.5rem 4rem 4rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: 1.5rem;
 }
 .track {
   background: var(--white);
   border: 1px solid #D0DCE8;
-  border-radius: 16px;
-  padding: 1rem;
+  border-radius: 18px;
+  padding: 1.25rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
   min-width: 0;
 }
 .track-cover {
-  width: 72px;
-  height: 72px;
+  width: 96px;
+  height: 96px;
   flex-shrink: 0;
-  border-radius: 10px;
+  border-radius: 12px;
   background: var(--steel-pale); /* placeholder until an image loads */
   object-fit: cover;
   display: block;
@@ -152,7 +152,7 @@ nav {
 .track-title {
   display: block;
   font-family: var(--serif);
-  font-size: 1.05rem;
+  font-size: 1.25rem;
   line-height: 1.2;
   color: var(--ink);
 }
@@ -160,8 +160,8 @@ a.track-title { text-decoration: none; }
 a.track-title:hover { color: var(--steel); text-decoration: underline; }
 .track-artist {
   display: block;
-  margin-top: 0.25rem;
-  font-size: 0.88rem;
+  margin-top: 0.3rem;
+  font-size: 1rem;
   color: var(--steel);
 }
 
@@ -169,7 +169,7 @@ a.track-title:hover { color: var(--steel); text-decoration: underline; }
 footer {
   border-top: 1px solid #E5EAF0;
   text-align: center;
-  padding: 2rem 3rem;
+  padding: 2rem 4rem;
   font-size: 0.84rem;
   color: var(--mid);
 }
@@ -195,8 +195,9 @@ footer a { color: var(--steel); text-decoration: none; }
   .nav-links li { border-top: 1px solid #E5EAF0; }
   .nav-links a { display: block; padding: 1rem 1.4rem; }
   .hero { padding: 3rem 1.4rem; }
-  .section { padding: 2rem 1.4rem 3rem; }
+  .section { padding: 2rem 1.4rem 3rem; gap: 1.2rem; }
   .divider { margin: 0 1.4rem; }
+  footer { padding: 2rem 1.4rem; }
 }
 </style>
 </head>
