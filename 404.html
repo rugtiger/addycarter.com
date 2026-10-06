@@ -308,8 +308,17 @@ a:focus-visible, button:focus-visible { outline: 2px solid #fff; outline-offset:
 /* 404 PAGE */
 .hero h1 { font-size: clamp(1.6rem, 6.8vw, 3.4rem); max-width: 26ch; margin-left: auto; margin-right: auto; text-wrap: balance; }
 .hero { padding: 4.5rem 4rem 3rem; }
-.page { max-width: 560px; margin: 0 auto; padding: 2.5rem 2rem 4rem; }
+.page {
+  min-height: calc(100vh - 62px);
+  min-height: calc(100dvh - 62px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
 .player {
+  width: 100%;
+  max-width: 760px;
   background: rgba(255,255,255,0.6);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
@@ -319,13 +328,15 @@ a:focus-visible, button:focus-visible { outline: 2px solid #fff; outline-offset:
 }
 .player-top { display: flex; align-items: center; gap: 1.25rem; }
 .art {
-  width: 96px; height: 96px; flex-shrink: 0; border-radius: 12px;
+  width: 120px; height: 120px; flex-shrink: 0; border-radius: 12px;
   background: linear-gradient(135deg, #e8f1f9, #8fb8de);
   display: flex; align-items: center; justify-content: center;
   font-size: 2.2rem; color: var(--steel-dark);
   box-shadow: 0 4px 12px rgba(15, 40, 80, 0.2);
 }
 img.art { display: block; object-fit: cover; }
+.player .track-title { font-size: 1.6rem; }
+.player .track-artist { font-size: 1.05rem; }
 .bar { height: 6px; margin-top: 1.5rem; border-radius: 999px; background: rgba(44,95,138,0.2); overflow: hidden; }
 .bar span { display: block; width: 4%; height: 100%; background: var(--steel-dark); border-radius: 999px; }
 .times { display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.85rem; color: #374151; }
@@ -338,10 +349,10 @@ a.btn {
 a.btn:hover { background: #1f4468; }
 @media (max-width: 680px) {
   .hero { padding: 3rem 1.4rem 2rem; }
-  .page { padding: 2rem 1.4rem 3rem; }
+  .page { padding: 1.4rem; }
   .player-top { gap: 1rem; }
   .art { width: 64px; height: 64px; font-size: 1.6rem; }
-  .track-title { font-size: 1.05rem; }
+  .player .track-title { font-size: 1.05rem; }
 }
 </style>
 </head>
@@ -375,20 +386,10 @@ a.btn:hover { background: #1f4468; }
 </ul>
 </nav>
 
-<div class="hero">
-<div class="hero-inner">
-<p class="hero-tag">Error 404</p>
-<h1>I Still Haven't Found What I'm Looking For</h1>
-<p>We couldn't find this page either</p>
-</div>
-</div>
-
-<hr class="divider" />
-
 <main class="page">
 <section class="player">
   <div class="player-top">
-    <img class="art" src="/covers/i-still-havent-found-what-im-looking-for.png" alt="I Still Haven't Found What I'm Looking For" />
+    <img class="art" src="/covers/i-still-havent-found-what-im-looking-for.jpg" alt="I Still Haven't Found What I'm Looking For album cover" />
     <div>
       <span class="track-title">I Still Haven't Found What I'm Looking For</span>
       <span class="track-artist">U2</span>
@@ -396,15 +397,11 @@ a.btn:hover { background: #1f4468; }
   </div>
   <div class="bar" aria-hidden="true"><span></span></div>
   <div class="times"><span>0:00</span><span>4:04</span></div>
-  <p class="msg">The page you were looking for isn't here. It may have moved, or the link might have a typo.</p>
+  <p class="msg">Error 404: Oh no! The page you were looking for isn't here. It may have moved, or the link might have a typo.</p>
   <a class="btn" href="/">Back to the playlist</a>
 </section>
 </main>
 
-<footer>
-<a href="mailto:agc5787@psu.edu">agc5787@psu.edu</a> &nbsp;·&nbsp;
-<a href="https://www.linkedin.com/in/addycarter/" target="_blank" rel="noopener">linkedin.com/addycarter</a>
-</footer>
 
 <script>
 function toggleNav() {
