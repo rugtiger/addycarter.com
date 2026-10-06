@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" type="image/png" href="favicon.png">
+<link rel="icon" type="image/png" href="/favicon.png">
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Page Not Found — Addy Carter</title>
@@ -19,15 +19,79 @@
   --serif: 'DM Serif Display', Georgia, serif;
   --sans: 'DM Sans', system-ui, sans-serif;
 }
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 body {
   font-family: var(--sans);
-  background: var(--light);
+  background: #1f4468; /* fallback behind the cosmos background */
   color: var(--ink);
   line-height: 1.65;
   font-size: 17px;
+}
+
+/* COSMOS BACKGROUND */
+.cosmos {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 20% 15%, #8fb8de 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 80%, #2C5F8A 0%, transparent 60%),
+    #4682B4;
+}
+.cosmos::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(45deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 3px);
+  pointer-events: none;
+}
+.cosmos-swirls {
+  position: absolute;
+  inset: -10%;
+  background:
+    repeating-radial-gradient(circle at 18% 30%, transparent 0 38px, rgba(205,228,250,0.28) 46px, transparent 58px),
+    repeating-radial-gradient(circle at 78% 62%, transparent 0 52px, rgba(205,228,250,0.24) 62px, transparent 78px),
+    repeating-radial-gradient(circle at 48% 92%, transparent 0 30px, rgba(205,228,250,0.20) 38px, transparent 50px);
+  filter: url(#cosmos-warp) blur(2px);
+}
+.cosmos-grain {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+  mix-blend-mode: overlay;
+}
+.cosmos-stars { position: absolute; inset: 0; }
+.star {
+  position: absolute;
+  width: var(--s);
+  height: var(--s);
+  margin: calc(var(--s) / -2) 0 0 calc(var(--s) / -2);
+  background:
+    radial-gradient(circle, #fff 0 10%, transparent 42%),
+    linear-gradient(to bottom, transparent, #fff 50%, transparent) center / 2px 100% no-repeat,
+    linear-gradient(to right, transparent, #fff 50%, transparent) center / 100% 2px no-repeat;
+  filter: drop-shadow(0 0 4px rgba(215,235,255,0.9));
+  animation: twinkle var(--d) ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+.star.big::before {
+  content: "";
+  position: absolute;
+  inset: 18%;
+  transform: rotate(45deg);
+  background:
+    linear-gradient(to bottom, transparent, #fff 50%, transparent) center / 1px 100% no-repeat,
+    linear-gradient(to right, transparent, #fff 50%, transparent) center / 100% 1px no-repeat;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.35; transform: scale(0.85); }
+  50%      { opacity: 1;    transform: scale(1.1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .star { animation: none; opacity: 0.8; }
 }
 
 /* NAV */
@@ -35,40 +99,37 @@ nav {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--white);
-  border-bottom: 1px solid #D0DCE8;
+  background: rgba(255,255,255,0.55);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.4);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 3rem;
+  padding: 0 4rem;
   height: 62px;
 }
-
 .nav-logo {
   font-family: var(--serif);
   font-size: 1.15rem;
-  color: var(--ink);
+  color: var(--steel-dark);
   text-decoration: none;
   letter-spacing: 0.01em;
 }
-
 .nav-links {
   display: flex;
   gap: 2.2rem;
   list-style: none;
 }
-
 .nav-links a {
   font-size: 0.92rem;
   font-weight: 400;
-  color: var(--mid);
+  color: #374151;
   text-decoration: none;
   letter-spacing: 0.02em;
   transition: color 0.2s;
 }
-
-.nav-links a:hover { color: var(--steel); }
-
+.nav-links a:hover, .nav-links a.active { color: var(--steel); }
 .nav-toggle {
   display: none;
   flex-direction: column;
@@ -93,68 +154,131 @@ nav {
 .nav-toggle.open span:nth-child(2) { opacity: 0; }
 .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* 404 SECTION */
-.error-wrap {
-  min-height: calc(100vh - 62px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 3rem;
-}
-
-.error-inner {
-  max-width: 480px;
+/* HERO */
+.hero {
+  background: transparent;
+  padding: 6rem 4rem;
   text-align: center;
 }
-
-.error-code {
-  font-family: var(--serif);
-  font-size: clamp(4rem, 12vw, 7rem);
-  font-weight: 400;
-  color: var(--steel);
-  line-height: 1;
-  margin-bottom: 1rem;
+.hero-inner {
+  /* trims the empty space above the first line and below the last line */
+  text-box: trim-both cap alphabetic;
 }
-
-.error-title {
-  font-family: var(--serif);
-  font-size: 1.6rem;
-  font-weight: 400;
-  color: var(--ink);
-  margin-bottom: 0.9rem;
-}
-
-.error-sub {
-  font-size: 0.97rem;
-  color: var(--mid);
-  font-weight: 300;
-  margin-bottom: 2.2rem;
-}
-
-.error-links {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.btn {
-  display: inline-block;
-  font-size: 0.88rem;
+.hero .hero-tag {
+  font-size: 0.85rem;
   font-weight: 500;
-  text-decoration: none;
-  padding: 0.65rem 1.5rem;
-  border-radius: 3px;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  color: rgba(255,255,255,0.92);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 1.1rem;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(3.2rem, 8vw, 6rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  margin-bottom: 1.6rem;
+}
+.hero h1 + p {
+  font-family: var(--sans);
+  font-size: 1.3rem;
+  color: rgba(255,255,255,0.92);
+  font-weight: 400;
+  line-height: 1.2;
+}
+.hero .hero-tag,
+.hero h1,
+.hero h1 + p { text-shadow: 0 2px 18px rgba(20, 50, 90, 0.45); }
+
+/* DIVIDER */
+.divider {
+  margin: 0 4rem;
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.18);
 }
 
-.btn-solid { background: var(--steel); color: var(--white); }
-.btn-solid:hover { background: var(--steel-dark); }
-.btn-ghost {
-  border: 1px solid #D0DCE8;
-  color: var(--ink);
+/* TRACKS */
+.section {
+  padding: 2.5rem 4rem 4rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: 1.5rem;
 }
-.btn-ghost:hover { border-color: var(--steel); color: var(--steel); }
+.track {
+  background: rgba(255,255,255,0.6);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.45);
+  border-radius: 18px;
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  min-width: 0;
+  position: relative;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+.track:hover {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.72);
+  box-shadow: 0 10px 28px rgba(15, 40, 80, 0.25);
+}
+.track:has(a.track-cover-link) { cursor: pointer; }
+.track-cover {
+  width: 96px;
+  height: 96px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: var(--steel-pale); /* placeholder until an image loads */
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 4px 12px rgba(15, 40, 80, 0.2);
+}
+a.track-cover-link {
+  flex-shrink: 0;
+  display: block;
+  line-height: 0;
+  border-radius: 12px;
+  transition: opacity 0.2s;
+}
+a.track-cover-link:hover { opacity: 0.8; }
+/* stretches the cover link across the whole card */
+a.track-cover-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+}
+.track-info { min-width: 0; }
+.track-title {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.2;
+  color: #0f2742;
+}
+.track-artist {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--steel-dark);
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid rgba(255,255,255,0.18);
+  text-align: center;
+  padding: 2rem 4rem;
+  font-size: 0.84rem;
+  color: rgba(255,255,255,0.88);
+}
+footer a { color: #dbeaff; text-decoration: none; }
+
+a:focus-visible, button:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 
 @media (max-width: 680px) {
   nav { padding: 0 1.2rem; }
@@ -175,49 +299,138 @@ nav {
   .nav-links.open { max-height: 300px; }
   .nav-links li { border-top: 1px solid #E5EAF0; }
   .nav-links a { display: block; padding: 1rem 1.4rem; }
-  .error-wrap { padding: 2rem 1.4rem; }
+  .hero { padding: 3rem 1.4rem; }
+  .section { padding: 2rem 1.4rem 3rem; gap: 1.2rem; }
+  .divider { margin: 0 1.4rem; }
+  footer { padding: 2rem 1.4rem; }
+}
+
+/* 404 PAGE */
+.hero h1 { font-size: clamp(2.2rem, 6vw, 4rem); max-width: 18ch; margin-left: auto; margin-right: auto; }
+.hero { padding: 4.5rem 4rem 3rem; }
+.page { max-width: 560px; margin: 0 auto; padding: 2.5rem 2rem 4rem; }
+.player {
+  background: rgba(255,255,255,0.6);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.45);
+  border-radius: 18px;
+  padding: 1.5rem;
+}
+.player-top { display: flex; align-items: center; gap: 1.25rem; }
+.art {
+  width: 96px; height: 96px; flex-shrink: 0; border-radius: 12px;
+  background: linear-gradient(135deg, #e8f1f9, #8fb8de);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.2rem; color: var(--steel-dark);
+  box-shadow: 0 4px 12px rgba(15, 40, 80, 0.2);
+}
+.bar { height: 6px; margin-top: 1.5rem; border-radius: 999px; background: rgba(44,95,138,0.2); overflow: hidden; }
+.bar span { display: block; width: 4%; height: 100%; background: var(--steel-dark); border-radius: 999px; }
+.times { display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.85rem; color: #374151; }
+.msg { margin-top: 1.25rem; color: #1f2937; }
+a.btn {
+  display: inline-block; margin-top: 1.25rem; padding: 0.65rem 1.3rem; border-radius: 999px;
+  background: var(--steel-dark); color: #fff; text-decoration: none; font-weight: 500;
+  transition: background 0.2s;
+}
+a.btn:hover { background: #1f4468; }
+@media (max-width: 680px) {
+  .hero { padding: 3rem 1.4rem 2rem; }
+  .page { padding: 2rem 1.4rem 3rem; }
 }
 </style>
 </head>
 <body>
 
+<div class="cosmos" aria-hidden="true">
+  <div class="cosmos-swirls"></div>
+  <svg class="cosmos-grain"><rect width="100%" height="100%" filter="url(#cosmos-grain)"/></svg>
+  <div class="cosmos-stars" id="cosmosStars"></div>
+</div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="cosmos-warp" x="-10%" y="-10%" width="120%" height="120%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.004 0.006" numOctaves="2" seed="7" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="140" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <filter id="cosmos-grain">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+  </filter>
+</svg>
+
 <nav>
-  <a class="nav-logo" href="/index.html">Addy Carter</a>
-  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" onclick="toggleNav()">
-    <span></span><span></span><span></span>
-  </button>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="/index.html">Home</a></li>
-    <li><a href="/competitions.html">Competitions</a></li>
-    <li><a href="/playlist.html">Playlist</a></li>
-    <li><a href="/blog.html">Posts</a></li>
-    <li><a href="https://www.linkedin.com/in/addycarter/" target="_blank" rel="noopener">LinkedIn</a></li>
-  </ul>
+<a class="nav-logo" href="/">Addy Carter</a>
+<button class="nav-toggle" id="navToggle" aria-label="Toggle menu" onclick="toggleNav()">
+<span></span><span></span><span></span>
+</button>
+<ul class="nav-links" id="navLinks">
+<li><a href="/">Playlist</a></li>
+<li><a href="/about.html">About</a></li>
+<li><a href="https://www.linkedin.com/in/addycarter/" target="_blank" rel="noopener">LinkedIn</a></li>
+</ul>
 </nav>
 
-<div class="error-wrap">
-  <div class="error-inner">
-    <p class="error-code">404</p>
-    <p class="error-title">Uh oh, we're not in Kansas anymore...</p>
-    <p class="error-sub">This page doesn't exist. Let's get you back to the yellow brick road.</p>
-    <div class="error-links">
-      <a href="/index.html" class="btn btn-solid">Follow the yellow brick road</a>
-      <a href="/blog.html" class="btn btn-ghost">Read the posts</a>
-    </div>
-  </div>
+<div class="hero">
+<div class="hero-inner">
+<p class="hero-tag">Error 404</p>
+<h1>I Still Haven't Found What I'm Looking For</h1>
+<p>We couldn't find this page either</p>
+</div>
 </div>
 
+<hr class="divider" />
+
+<main class="page">
+<section class="player">
+  <div class="player-top">
+    <div class="art" aria-hidden="true">&#9834;</div>
+    <div>
+      <span class="track-title">I Still Haven't Found What I'm Looking For</span>
+      <span class="track-artist">U2</span>
+    </div>
+  </div>
+  <div class="bar" aria-hidden="true"><span></span></div>
+  <div class="times"><span>0:00</span><span>4:04</span></div>
+  <p class="msg">The page you were looking for isn't here. It may have moved, or the link might have a typo.</p>
+  <a class="btn" href="/">Back to the playlist</a>
+</section>
+</main>
+
+<footer>
+<a href="mailto:agc5787@psu.edu">agc5787@psu.edu</a> &nbsp;·&nbsp;
+<a href="https://www.linkedin.com/in/addycarter/" target="_blank" rel="noopener">linkedin.com/addycarter</a>
+</footer>
+
 <script>
-  function toggleNav() {
-    document.getElementById('navToggle').classList.toggle('open');
-    document.getElementById('navLinks').classList.toggle('open');
-  }
-  document.querySelectorAll('.nav-links a').forEach(function(link) {
-    link.addEventListener('click', function() {
-      document.getElementById('navToggle').classList.remove('open');
-      document.getElementById('navLinks').classList.remove('open');
-    });
+function toggleNav() {
+  document.getElementById('navToggle').classList.toggle('open');
+  document.getElementById('navLinks').classList.toggle('open');
+}
+document.querySelectorAll('.nav-links a').forEach(function(link) {
+  link.addEventListener('click', function() {
+    document.getElementById('navToggle').classList.remove('open');
+    document.getElementById('navLinks').classList.remove('open');
   });
+});
+
+/* COSMOS STARS */
+(function () {
+  var box = document.getElementById('cosmosStars');
+  if (!box) return;
+  var count = window.innerWidth < 680 ? 28 : 55;
+  for (var i = 0; i < count; i++) {
+    var s = document.createElement('span');
+    var big = Math.random() < 0.15;
+    s.className = big ? 'star big' : 'star';
+    s.style.left = (Math.random() * 100) + '%';
+    s.style.top = (Math.random() * 100) + '%';
+    s.style.setProperty('--s', (big ? 36 + Math.random() * 30 : 8 + Math.random() * 14) + 'px');
+    s.style.setProperty('--d', (2.5 + Math.random() * 3.5) + 's');
+    s.style.setProperty('--delay', (-Math.random() * 6) + 's');
+    box.appendChild(s);
+  }
+})();
 </script>
 </body>
 </html>
