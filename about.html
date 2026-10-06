@@ -344,6 +344,26 @@ a.btn {
   transition: background 0.2s;
 }
 a.btn:hover { background: #1f4468; }
+
+/* GEAR LIST (My Setup) */
+.gear { list-style: none; margin-top: 0.4rem; }
+.gear li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid rgba(44,95,138,0.18);
+}
+.gear li:first-child { border-top: none; }
+.gear-label {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: #0f2742;
+}
+.gear a.btn { margin-top: 0; }
+
 @media (max-width: 680px) {
   .hero { padding: 3rem 1.4rem 2rem; }
   .page { padding: 2rem 1.4rem 3rem; }
@@ -391,7 +411,6 @@ a.btn:hover { background: #1f4468; }
 <hr class="divider" />
 
 <main class="page">
-<!-- SAMPLE CONTENT: edit any text below -->
 <section class="card intro">
   <div>
     <h2>Hi, I'm Addy!</h2>
@@ -400,9 +419,17 @@ a.btn:hover { background: #1f4468; }
 </section>
 
 <section class="card">
-  <h2>Get in touch</h2>
-  <p>The best way to reach me is by email or LinkedIn.</p>
-  <a class="btn" href="mailto:agc5787@psu.edu">Email me</a>
+  <h2>My Setup</h2>
+  <ul class="gear">
+    <li>
+      <span class="gear-label">Turntable</span>
+      <a class="btn" href="https://www.audio-technica.com/en-us/at-lp60x" target="_blank" rel="noopener">Audio-Technica AT-LP60X-GM</a>
+    </li>
+    <li>
+      <span class="gear-label">Speakers</span>
+      <a class="btn" href="https://www.edifier.com/us/p/studio-monitors/mr4" target="_blank" rel="noopener">Edifier MR4 Speakers</a>
+    </li>
+  </ul>
 </section>
 </main>
 
